@@ -59,10 +59,11 @@ for year in year_range:
         drug = str(drug.replace(',',' '))
         release_year = str(year)
         release_month = string_parser(drug,'Approved',release_year,'Both')
+        release_month = str(release_month.replace('of',''))
         trade_name = string_parser(drug,0,'(','Back')
         technical_name = string_parser(drug,'(',')','Both')
         drug_manufacturer = drug[drug.find(';') + 1 : drug.find(';',drug.find(';')+1)]
-        treated_disease = string_parser(drug,'For','Approved','Both')
+        treated_disease = string_parser(drug,'For ','Approved','Both')
         treated_disease = str(treated_disease.replace('the treatment of',''))
         drug_google_search_webpage = requests.get(google_query_link + trade_name)
         drugs_google_search_BeautifulSoup = BeautifulSoup(drug_google_search_webpage.content, 'lxml')
